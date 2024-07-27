@@ -20,7 +20,13 @@ def insert_monitoring_id(rsp, id):
     with open(alarms_info_db, "r") as inFile:
         data = load(inFile)
 
-    data[id] = rsp_data['thread']['name']
+    thread_name = rsp_data['thread']['name']
+    msg_ns = rsp_data['name'].split('/')
+    message_id = '/'.join(msg_ns[2:])
+
+    alarm_obj = {'thread_name': thread_name, "message_id": message_id}
+
+    data[id] = alarm_obj
 
     # write back
     data = dumps(data, indent=4)
@@ -32,18 +38,21 @@ def get_thread_key(id):
     alarms_info_db = (get_app_file_path("tbl_alarms.json"))
     with open(alarms_info_db, "r") as inFile:
         data = load(inFile)
-    return data[id]
+    return data[id]['thread_name']
 
+def get_message_id(id):
+    alarms_info_db = (get_app_file_path("tbl_alarms.json"))
+    with open(alarms_info_db, "r") as inFile:
+        data = load(inFile)
+    return data[id]['message_id']
 
-def resolve_incident(webhookUrl, id):
-    thread_name = get_thread_key(str(id))
-    print(thread_name)
 
 
 def send_text_message_by_webhook(webhookUrl, msg, id):
     message_headers = {"Content-Type": "application/json; charset=UTF-8"}
+    webhookUrl = webhookUrl + "&client-custom-name"
     app_message = {
-        "text": msg
+        "text": msg,
     }
     http_obj = Http()
     response = http_obj.request(
@@ -82,12 +91,10 @@ def main():
 
     WEBHOOK_URL = APP_CONFIG['dev']['endpoint']
 
-    # response = send_text_message_by_webhook(
-    #     WEBHOOK_URL, "INCIDENT: I am Alert message - with monitoring ID 4567", 4567)
-    # reply = send_thread_message_by_webhook(
-    #    WEBHOOK_URL, 'I am thread message', 4567)
-
-    resolve_incident(WEBHOOK_URL, 4567)
+    response = send_text_message_by_webhook(
+        WEBHOOK_URL, "INCIDENT: I am Alert message - with monitoring ID 7896", 7896)
+    reply = send_thread_message_by_webhook(
+       WEBHOOK_URL, 'RESOLVED: I am thread message', 7896)
 
 
 if __name__ == "__main__":
