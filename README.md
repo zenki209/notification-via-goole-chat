@@ -23,3 +23,6 @@ endpoint=''
 [dev]
 endpoint='https://chat.googleapis.com/v1/spaces/AAAAYILywMY/messages?key=xxxxxxxI&token=xxxxxxx'
 ```
+
+The card message would be like 
+![alt text](https://github.com/zenki209/notification-via-google-chat/blob/master/images/card-images.png)
