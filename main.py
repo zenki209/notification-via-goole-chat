@@ -98,15 +98,38 @@ def send_thread_message_by_webhook(web_hook_url, msg, alarm_id):
     return response
 
 
+def send_message_as_card(web_hook_url):
+    message_headers = {"Content-Type": "application/json; charset=UTF-8"}
+    
+    # sample read card format
+    data = get_app_file_path("chat_sample_card.json")
+    with open(data, "r", encoding='utf8') as file:
+        card_message = load(file)
+
+
+    web_hook_url = WEBHOOK_URL + "&client-custom-name"
+
+    http_obj = Http()
+    response = http_obj.request(
+        uri=web_hook_url,
+        method="POST",
+        headers=message_headers,
+        body=dumps(card_message),
+    )
+    return response
+
+
 def main():
     """
     main program here
     """
 
-    send_text_message_by_webhook(
-        WEBHOOK_URL, "INCIDENT: I am Alert message - with monitoring ID 7896", 7896)
-    send_thread_message_by_webhook(
-        WEBHOOK_URL, 'RESOLVED: I am thread message', 7896)
+    # send_text_message_by_webhook(
+    #     WEBHOOK_URL, "INCIDENT: I am Alert message - with monitoring ID 7896", 7896)
+    # send_thread_message_by_webhook(
+    #     WEBHOOK_URL, 'RESOLVED: I am thread message', 7896)
+
+    send_message_as_card(WEBHOOK_URL)
 
 
 if __name__ == "__main__":

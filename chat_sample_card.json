@@ -1,0 +1,58 @@
+{
+    "cardsV2": [
+        {
+            "cardId": "unique-card-id",
+            "card": {
+                "header": {
+                    "title": "Khoa Trinh",
+                    "subtitle": "Software Engineer",
+                    "imageType": "CIRCLE"
+                },
+                "sections": [
+                    {
+                        "header": "Contact Info",
+                        "collapsible": "true",
+                        "uncollapsibleWidgetsCount": 1,
+                        "widgets": [
+                            {
+                                "decoratedText": {
+                                    "text": "GENERAL INFORMATION WITHOUT DETAIL"
+                                }
+                            },
+                            {
+                                "decoratedText": {
+                                    "startIcon": {
+                                        "knownIcon": "PERSON"
+                                    },
+                                    "text": "<font color=\"#80e27e\">Online</font>"
+                                }
+                            },
+                            {
+                                "decoratedText": {
+                                    "startIcon": {
+                                        "knownIcon": "PHONE"
+                                    },
+                                    "text": "+1 (555) 555-1234"
+                                }
+                            },
+                            {
+                                "buttonList": {
+                                    "buttons": [
+                                        {
+                                            "text": "Share",
+                                            "onClick": {
+                                                    "openLink": {
+                                                        "url": "https://example.com/share"
+                                                    }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
