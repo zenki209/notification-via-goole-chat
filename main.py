@@ -99,13 +99,14 @@ def send_thread_message_by_webhook(web_hook_url, msg, alarm_id):
 
 
 def send_message_as_card(web_hook_url):
+    """
+        Sending message as a card
+    """
     message_headers = {"Content-Type": "application/json; charset=UTF-8"}
-    
     # sample read card format
     data = get_app_file_path("chat_sample_card.json")
     with open(data, "r", encoding='utf8') as file:
         card_message = load(file)
-
 
     web_hook_url = WEBHOOK_URL + "&client-custom-name"
 
