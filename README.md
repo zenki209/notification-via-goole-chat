@@ -25,4 +25,4 @@ endpoint='https://chat.googleapis.com/v1/spaces/AAAAYILywMY/messages?key=xxxxxxx
 ```
 
 The card message would be like 
-![alt text](https://github.com/zenki209/notification-via-google-chat/blob/master/images/card-images.png)
+![stack Overflow]([http://lmsotfy.com/so.png](https://github.com/zenki209/notification-via-goole-chat/blob/master/images/card-images.png))
